@@ -55,7 +55,7 @@ To show how to integrate with an Azure OpenAI model, we'll use a short command-l
 
 4. Make sure the type of shell indicated on the top left of the Cloud Shell pane is switched to *Bash*. If it's *PowerShell*, switch to *Bash* by using the drop-down menu.
 
-5. Once the terminal starts, enter the following command to download the sample application and save it to a folder called `azure-openai`.
+5. Once the terminal starts, enter the following command to download the sample application and save it to a folder called `azure-openai`. If your Cloud Shell already has a folder named `azure-openai`, run `rm -r azure-openai -f ` before cloning the repo.
 
     ```bash
     git clone https://github.com/MicrosoftLearning/mslearn-openai azure-openai
@@ -134,7 +134,7 @@ For this exercise, you'll complete some key parts of the application to enable u
             text
         },
         MaxTokens = 60,
-        Temperature = 0.8f,
+        Temperature = 0.7f,
     };
 
     // Send request to Azure OpenAI model
@@ -157,13 +157,8 @@ For this exercise, you'll complete some key parts of the application to enable u
     response = openai.Completion.create(
         engine=azure_oai_model,
         prompt=text,
-        temperature=1,
-        max_tokens=60,
-        top_p=1,
-        frequency_penalty=0,
-        presence_penalty=0,
-        best_of=1,
-        stop=None
+        temperature=0.7,
+        max_tokens=60
     )
     ```
 

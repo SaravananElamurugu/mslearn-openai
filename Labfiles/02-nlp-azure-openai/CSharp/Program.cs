@@ -6,7 +6,7 @@ using Microsoft.Extensions.Configuration.Json;
 using Azure;
 
 // Add Azure OpenAI package
-using Azure.AI.OpenAI;
+
 
 // Build a config object and retrieve user settings.
 IConfiguration config = new ConfigurationBuilder()
@@ -33,20 +33,5 @@ void GetSummaryFromOpenAI(string text)
     }
 
     // Initialize the Azure OpenAI client
-    OpenAIClient client = new OpenAIClient(new Uri(oaiEndpoint), new AzureKeyCredential(oaiKey));
-
-    // Build completion options object
-    CompletionsOptions completionsOptions = new CompletionsOptions()
-    {
-        Prompt = {
-            text
-        },
-        MaxTokens = 60,
-        Temperature = 0.8f,
-    };
-
-    // Send request to Azure OpenAI model
-    Completions completionsResponse = client.GetCompletions(oaiModelName, completionsOptions);
-    string completion = completionsResponse.Choices[0].Text;
-    Console.WriteLine($"Chatbot: {completion}");
+    
 }  
