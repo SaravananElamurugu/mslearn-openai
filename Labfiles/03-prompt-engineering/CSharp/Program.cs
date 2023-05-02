@@ -17,6 +17,7 @@ string? oaiKey = config["AzureOAIKey"];
 string? oaiModelName = config["AzureOAIModelName"];
 
 string command;
+bool printFullResponse = true;
 
 do {
     Console.WriteLine("\n1: Basic prompt (no prompt engineering)\n" +
@@ -89,6 +90,12 @@ async Task GetResponseFromOpenAI(string fileText)
     );
     ChatCompletions completions = response.Value;
     string completion = completions.Choices[0].Message.Content;
+
+    // Write response full response to console, if requested
+    if (printFullResponse)
+    {
+        Console.WriteLine($"\nFull response: {JsonSerializer.Serialize(completions, new JsonSerializerOptions { WriteIndented = true })}\n\n");
+    }
 
     Console.WriteLine($"\nResponse: {completion}\n\n");
 }  
